@@ -1,0 +1,31 @@
+/*
+    HDFS ESSENTIALS
+*/
+
+HDFS a file system that manages the storage of data 
+
+    - Handles large datasets
+    - Data replication 
+    - High throughput
+    - High availability
+
+/*
+    HDFS ARCHITECHTURE
+*/
+
+1 namenode : master server that manages the file system namespace, stores metadata, replica locations
+n datanode : manages storage based on instuctions from namenode 
+The replicas are stored in different data nodes
+
+The file is broken into blocks of size 128 MB
+/*
+    HDFS COMMANDS
+*/
+
+hadoop fs -ls
+    or
+hdfs dfs -ls
+hdfs dfs -mkdir
+hdfs dfs -put
+hdfs dfs -text
+hdfs dfs -copyFromLocal <localFilePath> <hdfsPath>

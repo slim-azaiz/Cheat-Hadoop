@@ -1,0 +1,81 @@
+Comme discuté lors de notre renions, voici les points sur lesquels vous devez travailler cette période le temps d'avoir votre visa salarié : 
+
+1- Java : 
+- Bien comprendre les base de Java Core, abstractions et interfaces, connaitre le fonctionnement de la JVM (juste le niveau théoriques : phases de compilations, classpath, garbage collector)
+
+-Maitriser Maven : pour les dépendances, la compilations via MVN CLI, la forge Nexus, interfacage avec Jenkins)
+
+Cela peut vous sembler Trop mais tester les fonctions de base de ces outils ne prend pas beaucoup de temps
+
+-Adopter un style de code propre ( inspirer vous du code que je vous met a disposition sur bitbucket, voir tout en bas pour le lien)
+
+- Savoir implémenter facilement et de maniere irreprochable les design patterns Singleton, Factory et Abstract Factory 
+
+- Spring : Comprendre l'architecture du framework (IOC, injection de dependances,Application Context, Bean Factory, Spring Core, Spring Security Spring Boot)
+
+Après avoir compris le fondement du framework , faire les tests suivants :
+* Tester une application Hello World en Spring Core en utilisant une fois l'ApplicationContext et une fois le BeanFactory
+* Tester Spring Security avec LDAP
+* Creer et tester un micro service avec Spring Boot
+
+
+2- Scala:
+- Pas la peine de se prendre la tete pour aprendre tout le language, juste les principes de base.
+- Vous aurez juste besoin de Scala pour la partie Spark, il faut juste savoir ecrire un job Spark en Scala et voir comment s'utilise les expression lambda, je met a votre disposition un example joint a ce mail qui fait du hdfs to hbase ecrit en scala.
+
+Remarques: ce que j’appellerai par la suite, 'les questions communes', se trouve en bas du mail. 
+
+3- Hbase :
+- Savoir répondre aux questions communes
+- Bien comprendre l'architecture interne de HBase ( https://www.mapr.com/blog/in-depth-look-hbase-architecture)
+- Comprendre la structure d'une table Hbase (ainsi que chaque composant de la table, Row Key, Colomn family, column qualifier, versions, timestamp, replications ...)
+- Savoir Lire et ecrire depuis hbase avec spark
+
+4- Hive
+- Savoir répondre aux questions communes
+- Bien comprendre la notion de partitionnement des table hive
+- Les type de table et leurs interet (table interne et table externe), comment les creer
+-lire et ecrire dans hive depuis spark
+
+5- HDFS
+- Savoir répondre aux questions communes
+- comprendre l'architecture HDFS notament l'echange le role des namenode/datanode
+-lire et ecrire dans hdfs depuis spark
+
+6- Elasticsearch
+- Savoir répondre aux questions communes
+- Comprendre les notion de shards et replica
+- savoir utiliser les REST queries
+-Lire et ecrire dans elasticsearch depuis spark et l'api esSpark qui est assez riche ...
+
+7- Kafka
+- Savoir répondre aux questions communes
+- utiliser Kafka dans un job spark streaming
+- bien comprendre le principe des partitions kafka, les offsets, les consumer et consumer groups
+
+8- Spark
+- Savoir répondre aux questions communes
+- Ecrire des jobs sparks pour toutes les cibles (ou sources), hdfs, hive,hbase,es,kafka,base sql tel que mysql
+- comprendre la notion de partition et sa relation avec les executeurs
+comprendre tout les arguments du spark-submit
+- savoir gerer les partitions pour chaque source de donnés (les quels sont parametrables, comment modifier le nombre de partition, quand est ce que on ne peut pas le faire, c'est quoi l'interet ...)
+- savoir ecrire les jobs spark en Scala (exemple en piece jointe ...)
+
+
+Questions Communes :
+
+Pour une technologie X :
+
+- C'est quoi ? architecture, a quel probleme ca repond et comment ca fonctionne en interne
+- Quand utiliser X ? quels sont les uses cases de X et pourquoi utiliser X et pas une autre technologie 
+- Quand ne pas utiliser X? quels sont les limites et les déavantages de X
+- Comment utiliser X ? api Java, CLI, Spark ...
+Exemple de Code :
+Je vous ai donné les droit d'accés sur du code que j'ai ecrit a EDF :
+vous y trouverez des jobs spark qui couvrent pas mal de cas
+Un style de code que vous pourrez adopter
+des connecteurs avec les API java sur tout les cibles
+
+https://fehdessid@bitbucket.org/fehdessid/edf.git
+
+https://docs.google.com/document/d/1W2-gNTIvBCBcPmWeoYf4Ya3TM-CrDlzdMdJinpst7TM/edit

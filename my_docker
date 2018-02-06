@@ -1,0 +1,13 @@
+sudo docker images
+docker ps -a
+
+// to delete an image
+rm containerID
+rmi imageID
+
+// default username password 
+raj_ops
+
+// if hive doesn't work in your sandbox and reinstall your image
+sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld

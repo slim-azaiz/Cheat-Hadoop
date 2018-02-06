@@ -1,0 +1,95 @@
+/*
+HIVE ESSENTIALS
+*/
+
+* Framework for data warehousing   on top of hadoop developed by facebook 
+- A datawarehouse is different from rdbms 
+ datawarehouse -->  batch processing to (goal)analatycal processing based on SCHEMA-ON-READ
+ rdbms --> transaction processing based on SCHEMA-ON-WRITE 
+
+* Hive does not allow row level updates in its tables
+Once the data written it's only read only (the pupose of analytical processing)
+Hive is based on SCHEMA-ON-READ
+ACID
+    * Atomicity = either succeeds completely or fails
+    * Consistency = the results of a running operation are visible to every subsequnt operation
+    * Isolation = an incomplete operation does not cause side effects to other users
+    * Durability = once an operation is completed it will be preserved even in the face of machine or system failure
+
+ORC file ONLY supports this feature
+* Hive does not support foreign key, not null, unique, INTERSECT, MINUS.
+* Hive supports only equijoins, not natural joins (implicit join; same coluns in 2 tables)
+* No data can exist in the table without following the schema
+* Hive supports 2 major datatypes 
+    - primitive
+        numeric/ Boolean/ String/ Timestamp
+    - collection
+        array/ map/ struct/ Union
+
+* Two types of tables: 
+    - Managed table : Hive data is stored in its warehouse directory
+    - External table: Hive data exists outside the warehouse directory
+    Botth keep metadata in the metastore.
+* Temprory tables get deleted at the end of hive session
+* Hive services : cli/ hiveserver2/ beeline/ ...
+* Hive functions : 
+    - STANDARD --> one row
+    - AGGREGATE --> multiple rows (sum, avg, count) used with group by ==> singe result 
+    - TABLE GENERATING --> 1 row ==> multiple rows ex: explode
+
+* UDF(user defined function)
+    - regular UDF (single row --> single row)
+    - UDAF (multiple row --> single row)
+    - UDTF (single row --> multiple row)
+
+Hive metastore = a db for system-related metadata :
+    - details about tables
+    - partitions
+    - Schemas(column definitions and data types)
+
+* The metadata tells hive how to read a file and covert into a
+table/ column representation 
+
+architecture:
+                JDBC ODBC
+client components thrift <----> metastore
+|compiler --- optimizer --- executor|
+|-----------------------------------|           
+           HADOOP
+
+
+Default RDBMS = apache derby 
+Hive compiler : trnslates Hiveql into MR Job
+Partions are HDFS Directories 
+
+Buckets are files in the leasf level : directories that correspond to records that
+have the same column value hash 
+
+we can sepcify the number of buckets
+
+
+
+Types of files :
+    - Sequence file 
+    - RC file
+    - ORC (Better query processing, fast storage, optimized utilization)
+    - Parquet
+    - Avro
+    - JSON
+
+Hcatalog : a key component, facilitates the schema on read
+Hive tables are a structure in Hcatalog
+/*
+    CLI COMMANDS
+*/
+show tables; 
+CREATE TBLE Students (ID INT, Name VARCHAR(30));
+INSERT INTO TABLE Students (ID, Name) VALUES (2, 'SLIM');
+LOAD DATA LOCAL INPATH 'YOUR PATH' OVERWRITE INTO TABLE Students;
+LOAD DATA LOCAL INPATH 'YOUR PATH'  INTO TABLE Students;
+ALTER TABLE Student ADD     COLUMNS (data DATE);
+                    REPLACE
+DROP TABLE Student;
+hive -e query
+hiive -f file
+
