@@ -1,4 +1,5 @@
 //create mapping
+
 curl --header "Content-Type:application/json" -XPUT localhost:9200/movies -d '
 {
     "mappings": {
